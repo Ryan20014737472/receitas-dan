@@ -11,11 +11,19 @@ body{
 }
 
 header{
-    background:#d94786;
-    color:white;
+    background:white;
     text-align:center;
     padding:25px;
 }
+
+h1{
+    background: #d94786;
+    color: white;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
 
 nav{
     margin-top:20px;
