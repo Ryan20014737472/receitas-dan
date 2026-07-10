@@ -1,4 +1,7 @@
-
+@font-face {
+    font-family: "Sweet Bread";
+    src: url("fontes/Sweet%20Bread.otf") format("opentype");
+}
 *{
     margin:0;
     padding:0;
