@@ -117,6 +117,9 @@ nav a:hover{
     margin-bottom:30px;
     text-shadow:2px 2px 8px rgba(0,0,0,.6);
 }
+.banner {
+    padding-left: 48px;
+}
 .botao{
     display:inline-block;
 
