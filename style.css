@@ -129,6 +129,20 @@ nav a:hover{
 .banner p {
     margin: 0;
 }
+.banner {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.titulo-receita {
+    font-size: 38px;
+    margin-bottom: 12px;
+}
+
+.subtitulo-receita {
+    font-size: 20px;
+    margin: 0;
+}
 .botao{
     display:inline-block;
 
