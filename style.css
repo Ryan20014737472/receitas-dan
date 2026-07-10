@@ -54,7 +54,7 @@ nav a:hover{
 
 
 
-/* BANNER PRINCIPAL */
+/* ===== BANNER ===== */
 
 .hero{
     position:relative;
@@ -63,67 +63,89 @@ nav a:hover{
     overflow:hidden;
 }
 
-
 .hero img{
     width:100%;
     height:100%;
     object-fit:cover;
 }
 
-
-.hero::after{
+/* Camada escura sobre a imagem */
+.hero::before{
     content:"";
     position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.45);
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.35);
+    z-index:1;
 }
 
-
-
+/* Texto do banner */
 .hero-texto{
     position:absolute;
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    color:white;
-    text-align:center;
-    z-index:1;
-}
+    z-index:2;
 
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.25);
+
+    border-radius:25px;
+
+    padding:40px 60px;
+
+    text-align:center;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+}
 
 .hero-texto h2{
-    font-size:45px;
-    margin-bottom:20px;
+    color:#ffffff;
+    font-size:56px;
+    margin-bottom:15px;
+    text-shadow:2px 2px 8px rgba(0,0,0,.6);
 }
-
 
 .hero-texto p{
+    color:#ffffff;
     font-size:22px;
     margin-bottom:30px;
+    text-shadow:2px 2px 8px rgba(0,0,0,.6);
 }
-
-
-
-/* BOTÃO */
-
 .botao{
     display:inline-block;
+
     background:#d94786;
+
     color:white;
-    padding:15px 35px;
-    border-radius:30px;
+
     text-decoration:none;
+
+    padding:16px 36px;
+
+    border-radius:50px;
+
     font-size:18px;
+
+    font-weight:bold;
+
     transition:.3s;
 }
 
-
 .botao:hover{
-    background:#b8326d;
-    transform:scale(1.05);
+
+    background:#c63c79;
+
+    transform:scale(1.08);
+
+    box-shadow:0 8px 20px rgba(217,71,134,.5);
+
 }
-
-
 
 /* PESQUISA */
 
