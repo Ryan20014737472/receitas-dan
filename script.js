@@ -14,6 +14,8 @@ if (botao) {
 const pesquisa = document.querySelector(".pesquisa input");
 const cards = Array.from(document.querySelectorAll(".card"));
 const listaDeCards = document.querySelector(".cards");
+const areaFavoritas = document.querySelector(".favoritas");
+const listaFavoritas = document.querySelector(".cards-favoritas");
 const chaveFavoritos = "receitas-favoritas";
 
 function normalizarTexto(texto) {
@@ -42,14 +44,37 @@ function atualizarBotaoFavorito(botaoFavorito, favorito) {
     botaoFavorito.textContent = favorito ? "★ Favoritada" : "☆ Favoritar";
 }
 
+function identificadorDaReceita(card) {
+    const linkDaReceita = card.querySelector("a[href]");
+
+    return linkDaReceita
+        ? linkDaReceita.getAttribute("href")
+        : card.querySelector("h3")?.textContent.trim();
+}
+
+function atualizarAreaFavoritas() {
+    if (!areaFavoritas || !listaFavoritas) return;
+
+    const favoritos = lerFavoritos();
+    listaFavoritas.innerHTML = "";
+    areaFavoritas.hidden = favoritos.length === 0;
+
+    cards.forEach((card) => {
+        const identificador = identificadorDaReceita(card);
+
+        if (!identificador || !favoritos.includes(identificador)) return;
+
+        const cardFavorito = card.cloneNode(true);
+        cardFavorito.querySelector(".botao-favorito")?.remove();
+        listaFavoritas.appendChild(cardFavorito);
+    });
+}
+
 if (cards.length) {
     const favoritos = lerFavoritos();
 
     cards.forEach((card) => {
-        const linkDaReceita = card.querySelector("a[href]");
-        const identificador = linkDaReceita
-            ? linkDaReceita.getAttribute("href")
-            : card.querySelector("h3")?.textContent.trim();
+        const identificador = identificadorDaReceita(card);
 
         if (!identificador) return;
 
@@ -57,23 +82,26 @@ if (cards.length) {
         botaoFavorito.type = "button";
         botaoFavorito.className = "botao-favorito";
 
-        let favorito = favoritos.includes(identificador);
+        const favorito = favoritos.includes(identificador);
         atualizarBotaoFavorito(botaoFavorito, favorito);
 
         botaoFavorito.addEventListener("click", () => {
             const favoritosAtuais = lerFavoritos();
-            favorito = !favoritosAtuais.includes(identificador);
+            const jaFavoritada = favoritosAtuais.includes(identificador);
 
-            const novosFavoritos = favorito
-                ? [...favoritosAtuais, identificador]
-                : favoritosAtuais.filter((item) => item !== identificador);
+            const novosFavoritos = jaFavoritada
+                ? favoritosAtuais.filter((item) => item !== identificador)
+                : [...favoritosAtuais, identificador];
 
             salvarFavoritos(novosFavoritos);
-            atualizarBotaoFavorito(botaoFavorito, favorito);
+            atualizarBotaoFavorito(botaoFavorito, !jaFavoritada);
+            atualizarAreaFavoritas();
         });
 
         card.appendChild(botaoFavorito);
     });
+
+    atualizarAreaFavoritas();
 }
 
 if (pesquisa && cards.length) {
