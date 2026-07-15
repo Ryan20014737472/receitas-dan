@@ -406,3 +406,87 @@ form button{
 form button:hover{
     background:#b8326d;
 }
+
+
+/* ===== ANIMAÇÕES ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    animation: aparecerPagina .55s ease-out both;
+}
+
+header {
+    animation: descerCabecalho .65s ease-out both;
+}
+
+.hero img {
+    animation: aproximarBanner 12s ease-in-out infinite alternate;
+}
+
+.botao,
+.card a,
+form button,
+.seta {
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.card img {
+    transition: transform .45s ease;
+}
+
+.card:hover img {
+    transform: scale(1.06);
+}
+
+.lista-categorias div {
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.lista-categorias div:hover {
+    box-shadow: 0 8px 16px rgba(240, 17, 80, .28);
+}
+
+.animar-revelacao {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+
+.animar-revelacao.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes aparecerPagina {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes descerCabecalho {
+    from {
+        opacity: 0;
+        transform: translateY(-18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes aproximarBanner {
+    from { transform: scale(1); }
+    to { transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
